@@ -41,7 +41,7 @@ $games = array(
 		'website' => 'http://fifaonline4.nexon.com/',
 		'wikipedia' => 'https://en.wikipedia.org/wiki/FIFA_Online_video_games'
 	),
-	'타크래프트: 브루드 워' => array(
+	'스타크래프트: 브루드 워' => array(
 		'english' => 'StarCraft: Brood War',
 		'website' => 'https://namu.wiki/w/%EC%8A%A4%ED%83%80%ED%81%AC%EB%9E%98%ED%94%84%ED%8A%B8:%20%EB%B8%8C%EB%A3%A8%EB%93%9C%20%EC%9B%8C',
 		'wikipedia' => 'https://en.wikipedia.org/wiki/StarCraft:_Brood_War'

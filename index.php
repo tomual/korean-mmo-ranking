@@ -34,7 +34,56 @@ foreach ($data as $row) {
 	$ranking[] = $game;
 }
 
-echo '<pre>';
-print_r($ranking);
+$ranking = array_slice($ranking, 0, 15);
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://tabler.github.io/tabler/assets/js/vendors/jquery-3.2.1.min.js"></script>
+	<script src="https://tabler.github.io/tabler/assets/js/vendors/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://tabler.github.io/tabler/assets/css/dashboard.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&subset=latin-ext">
+	<link rel="stylesheet" type="text/css" href="https://tabler.github.io/tabler/assets/css/dashboard.css">
+</head>
+<body>
+ <div class="page">
+    <div class="page-single">
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-6 col-md-12 mx-auto">
+                    <div class="text-center mb-6">
+                        <img src="./assets/brand/tabler.svg" class="h-6" alt="">
+                    </div>
+                    <div class="card">
+                        <div class="card-header p-6">
+                            <div class="card-title">Koream MMO Ranking
+								<div class="small text-muted">June 12 2018 - June 19 2018</div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
+                            <?php foreach($ranking as $rank => $game): ?>
+                            	<tr>
+                            		<td class="text-center text-muted"><?php echo $rank + 1 ?></td>
+                            		<td>
+                            			<a href="<?php echo $game['website'] ?>" class="text-inherit" target="_blank"><?php echo $game['english'] ?></a>
+                            			<div class="small text-muted"><?php echo $game['korean'] ?></div>
+                            		</td>
+                            		<td><a href="<?php echo $game['website'] ?>" target="_blank"><i class="fe fe-home"></i></a></td>
+                            		<td><a href="<?php echo $game['wikipedia'] ?>" target="_blank"><i class="fe fe-info"></i></a></td>
+                            	</tr>
+                            <?php endforeach ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
