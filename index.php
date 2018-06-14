@@ -47,6 +47,19 @@ if(!empty($_POST)) {
 		mysqli_close($db);
   	}
 }
+
+$posts = array();
+$db = mysqli_connect('localhost','root','','kmmo');
+if (!mysqli_connect_errno()) {
+	$sql = 'SELECT * FROM posts';
+	$query 	= mysqli_query($db, $sql);
+	while ($row = mysqli_fetch_array($query))
+	{
+		$posts[] = $row;
+	}
+}
+mysqli_close($db);
+
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +71,19 @@ if(!empty($_POST)) {
 	<link rel="stylesheet" type="text/css" href="https://tabler.github.io/tabler/assets/css/dashboard.css">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&subset=latin-ext">
 	<link rel="stylesheet" type="text/css" href="https://tabler.github.io/tabler/assets/css/dashboard.css">
+	<style>
+		.avatar {
+			background-position: bottom;
+			background-size: 30px;
+			overflow: hidden;
+		}
+
+		svg {
+			width: 30px;
+    		margin-top: 1px;
+		}
+
+	</style>
 </head>
 <body>
  <div class="page">
@@ -100,70 +126,24 @@ if(!empty($_POST)) {
                             </form>
                         </div>
                         <ul class="list-group card-list-group">
+                        	<?php foreach($posts as $post): ?>
                             <li class="list-group-item py-5">
                                 <div class="media">
-                                    <div class="media-object avatar avatar-md mr-4" style="background-image: url(demo/faces/male/16.jpg)"></div>
-                                    <div class="media-body">
-                                        <div class="media-heading">
-                                            <small class="float-right text-muted">4 min</small>
-                                            <h5>Peter Richards</h5>
-                                        </div>
-                                        <div>
-                                            Aenean lacinia bibendum nulla sed consectetur. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                                        </div>
-                                        <ul class="media-list">
-                                            <li class="media mt-4">
-                                                <div class="media-object avatar mr-4" style="background-image: url(demo/faces/female/17.jpg)"></div>
-                                                <div class="media-body">
-                                                    <strong>Debra Beck: </strong> Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Sed posuere consectetur est at lobortis.
-                                                </div>
-                                            </li>
-                                            <li class="media mt-4">
-                                                <div class="media-object avatar mr-4" style="background-image: url(demo/faces/male/32.jpg)"></div>
-                                                <div class="media-body">
-                                                    <strong>Jack Ruiz: </strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                                                </div>
-                                            </li>
-                                        </ul>
+                                    <div class="media-object avatar avatar-md mr-4">
+                                    	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="48px" height="48px" viewBox="0 0 48 48" enable-background="new 0 0 16 16" xml:space="preserve" fill="#FF0000"> <path d="M 42.00,45.00c0.00,1.659-1.341,3.00-3.00,3.00L9.00,48.00 c-1.656,0.00-3.00-1.341-3.00-3.00c0.00-6.00, 5.799-11.598, 11.727-13.812 C 14.304,29.073, 12.00,25.317, 12.00,21.00L12.00,18.00 c0.00-6.627, 5.373-12.00, 12.00-12.00s 12.00,5.373, 12.00,12.00l0.00,3.00 c0.00,4.317-2.304,8.073-5.724,10.188C 36.201,33.402, 42.00,39.00, 42.00,45.00z"></path></svg>
                                     </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item py-5">
-                                <div class="media">
-                                    <div class="media-object avatar avatar-md mr-4" style="background-image: url(demo/faces/male/16.jpg)"></div>
                                     <div class="media-body">
                                         <div class="media-heading">
-                                            <small class="float-right text-muted">12 min</small>
-                                            <h5>Peter Richards</h5>
+                                            <small class="float-right text-muted"><?php echo $post['created'] ?></small>
+                                            <h5><?php echo $post['ip'] ?></h5>
                                         </div>
                                         <div>
-                                            Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            <?php echo $post['message'] ?>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item py-5">
-                                <div class="media">
-                                    <div class="media-object avatar avatar-md mr-4" style="background-image: url(demo/faces/male/16.jpg)"></div>
-                                    <div class="media-body">
-                                        <div class="media-heading">
-                                            <small class="float-right text-muted">34 min</small>
-                                            <h5>Peter Richards</h5>
-                                        </div>
-                                        <div>
-                                            Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                                        </div>
-                                        <ul class="media-list">
-                                            <li class="media mt-4">
-                                                <div class="media-object avatar mr-4" style="background-image: url(demo/faces/male/26.jpg)"></div>
-                                                <div class="media-body">
-                                                    <strong>Wayne Holland: </strong> Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Sed posuere consectetur est at lobortis.
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
+                        	<?php endforeach ?>
                         </ul>
                     </div>
                 </div>
