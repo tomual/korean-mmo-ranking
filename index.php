@@ -17,7 +17,8 @@ $end = date('Y-m-d', strtotime('+6 days', strtotime($date)));
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Korean MMO Rankings 2018 - <?php echo date('F j', strtotime($start)) ?> to <?php echo date('F j', strtotime($end)) ?></title>
+    <meta name="description" content="Weekly rankings of Korea's MMO games. The most popular games in Korea right now for the week <?php echo date('d/m/Y', strtotime($start)) ?> to <?php echo date('d/m/Y', strtotime($end)) ?>">
 	<script src="https://tabler.github.io/tabler/assets/js/vendors/jquery-3.2.1.min.js"></script>
 	<script src="https://tabler.github.io/tabler/assets/js/vendors/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://tabler.github.io/tabler/assets/css/dashboard.css">
